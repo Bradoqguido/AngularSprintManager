@@ -1,0 +1,21 @@
+<mat-card color="secondary">
+  <mat-card-title>
+    Enter the project access code.
+  </mat-card-title>
+  <mat-card-subtitle>
+    To get access to your project.
+  </mat-card-subtitle>
+  <mat-card-content>
+    <form class="form">
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Project Access Code</mat-label>
+        <input matInput #message maxlength="256" placeholder="Ex. PR0j&ct">
+        <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
+        <mat-hint align="end">{{message.value.length}} / 16</mat-hint>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-flat-button color="primary" (click)="onClick">Enter</button>
+  </mat-card-actions>
+</mat-card>
