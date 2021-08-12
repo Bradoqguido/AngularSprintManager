@@ -1,0 +1,85 @@
+<div style="margin: 8px;">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table">
+    <!-- Id Column -->
+    <ng-container matColumnDef="Id">
+      <th mat-header-cell *matHeaderCellDef>Id</th>
+      <td mat-cell *matCellDef="let element">{{element.idTask}}</td>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="Status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let element">{{element.status}}</td>
+    </ng-container>
+
+    <!-- EstimatedHours Column -->
+    <ng-container matColumnDef="EstimatedHours">
+      <th mat-header-cell *matHeaderCellDef>Estimated Hours</th>
+      <td mat-cell *matCellDef="let element">{{element.estimatedHours}}</td>
+    </ng-container>
+
+    <!-- CompletedHours Column -->
+    <ng-container matColumnDef="CompletedHours">
+      <th mat-header-cell *matHeaderCellDef>Completed Hours</th>
+      <td mat-cell *matCellDef="let element">{{element.completedHours}}</td>
+    </ng-container>
+
+    <!-- AssignedTo Column -->
+    <ng-container matColumnDef="AssignedTo">
+      <th mat-header-cell *matHeaderCellDef>Assigned To</th>
+      <td mat-cell *matCellDef="let element">{{element.assignedTo}}</td>
+    </ng-container>
+
+    <!-- Title Column -->
+    <ng-container matColumnDef="Title">
+      <th mat-header-cell *matHeaderCellDef>Title</th>
+      <td mat-cell *matCellDef="let element">{{element.title}}</td>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="Description">
+      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <td mat-cell *matCellDef="let element">{{element.description}}</td>
+    </ng-container>
+
+    <!-- Specification Column -->
+    <ng-container matColumnDef="Specification">
+      <th mat-header-cell *matHeaderCellDef>Specification</th>
+      <td mat-cell *matCellDef="let element">{{element.specification}}</td>
+    </ng-container>
+
+    <!-- Sprint Column -->
+    <ng-container matColumnDef="Sprint">
+      <th mat-header-cell *matHeaderCellDef>Sprint</th>
+      <td mat-cell *matCellDef="let element">{{element.sprint}}</td>
+    </ng-container>
+
+    <!-- CreatedBy Column -->
+    <ng-container matColumnDef="CreatedBy">
+      <th mat-header-cell *matHeaderCellDef>Created By</th>
+      <td mat-cell *matCellDef="let element">{{element.CreatedBy}}</td>
+    </ng-container>
+
+    <!-- CreatedAt Column -->
+    <ng-container matColumnDef="CreatedAt">
+      <th mat-header-cell *matHeaderCellDef>Created At</th>
+      <td mat-cell *matCellDef="let element">{{element.CreatedAt}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Remove">
+      <th mat-header-cell *matHeaderCellDef>Remove</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-raised-button
+          [disabled]="!dataSource.length"
+          (click)="removeTask(element.idTask)"
+          class="button">
+          <mat-icon class="mat-18">delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
