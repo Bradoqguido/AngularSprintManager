@@ -1,5 +1,5 @@
 export interface project {
-  idProject: number,
+  id: number,
   name: string,
   idManager: string,
   active: boolean,

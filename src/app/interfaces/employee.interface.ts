@@ -1,5 +1,5 @@
 export interface Employee {
-  idUser: string,
+  id: string,
   name: string,
   email: string,
   photoUrl: string,

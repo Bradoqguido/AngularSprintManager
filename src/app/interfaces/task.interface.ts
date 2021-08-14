@@ -1,11 +1,11 @@
 export interface SprintTask {
-  idTask: number;
+  id: number;
   title: string;
   description: string;
   specification: string;
   status: string;
-  estimatedHours: Date;
-  completedHours: Date;
+  estimatedHours: number;
+  completedHours: number;
   assignedTo: string;
   sprint: string;
   createdBy: string;

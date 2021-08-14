@@ -12,4 +12,7 @@ export class SprintEditComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  create() {
+
+  }
 }

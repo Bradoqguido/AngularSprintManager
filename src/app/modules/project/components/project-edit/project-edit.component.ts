@@ -12,4 +12,7 @@ export class ProjectEditComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  create() {
+
+  }
 }

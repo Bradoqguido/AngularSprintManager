@@ -1,5 +1,5 @@
 export interface Sprint {
-  idSprint: number,
+  id: number,
   sprint: string,
   startDate: Date,
   endDate: Date,

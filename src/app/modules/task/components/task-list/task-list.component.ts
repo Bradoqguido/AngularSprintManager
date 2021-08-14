@@ -1,44 +1,57 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 import { MatTable } from '@angular/material/table';
 import { SprintTask } from '../../../../interfaces/task.interface';
 
 const TASK_COLUMNS = [
-  'Id',
-  'Title',
-  'Description',
-  'Specification',
-  'Status',
-  'EstimatedHours',
-  'CompletedHours',
-  'AssignedTo',
-  'Sprint',
-  'CreatedBy',
-  'CreatedAt',
-  'Remove'
+  'id',
+  'title',
+  'status',
+  'assignedTo',
+  'estimatedHours',
+  'completedHours',
+  'sprint'
 ];
 
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.scss']
+  styleUrls: ['./task-list.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ]
 })
 export class TaskListComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  // Receives the data from the parent component.
   @Input() lstTask: SprintTask[] = [];
 
-  @ViewChild(MatTable)
-  table!: MatTable<SprintTask>;
-
   displayedColumns: string[] = TASK_COLUMNS;
+
+  // Declare the data source as undefined to add data on ngOnInit.
   dataSource = [...this.lstTask];
 
-  removeTask(idTask: number) {
-    this.dataSource.splice(idTask);
+  expandedElement?: SprintTask | null;
+
+  @ViewChild(MatTable) table: any;
+
+  constructor() {
+  }
+
+  ngOnInit(): void {
+    // Add data from the parent component on the dataSource.
+    this.dataSource = [...this.lstTask];
+  }
+
+  delete(row: any): void {
+    const index = this.dataSource.indexOf(row, 0);
+    if (index > -1) {
+      this.dataSource.splice(index, 1);
+    }
     this.table.renderRows();
   }
 
