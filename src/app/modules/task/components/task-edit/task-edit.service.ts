@@ -6,4 +6,8 @@ import { Injectable } from '@angular/core';
 export class TaskEditService {
 
   constructor() { }
+
+  getLastTaskId(): number {
+    return 1;
+  }
 }
