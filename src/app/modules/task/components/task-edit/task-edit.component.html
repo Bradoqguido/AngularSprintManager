@@ -1,15 +1,69 @@
-<div style="margin: 8px;">
   <mat-card>
-    <mat-card-header>
-      <mat-card-title>Create task</mat-card-title>
-    </mat-card-header>
+    <form class="form" #taskForm="ngForm" (ngSubmit)="onSubmit()">
+      <div [formGroup]="frmTask">
+        <mat-card-header>
+          <mat-card-title>Task {{frmTask.get('id')?.value}}</mat-card-title>
+        </mat-card-header>
 
-    <mat-card-content>
-      Text content
-    </mat-card-content>
+        <mat-card-content>
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Task title</mat-label>
+            <input matInput #title formControlName="title" placeholder="Ex. Create a component...">
+          </mat-form-field>
 
-    <mat-card-actions align="end">
-      <button mat-flat-button color="primary" (click)="create()">Create Task</button>
-    </mat-card-actions>
+          <div class="task-detail">
+            <div class="full-width">
+              <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Assigned To</mat-label>
+                <mat-select #assignedTo formControlName="sprint">
+                  <mat-option *ngFor="let employee of lstEmployee" [value]="employee">
+                    {{employee}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Task Description</mat-label>
+                <textarea matInput #description formControlName="description"
+                  placeholder="Ex. Create a component with..."></textarea>
+              </mat-form-field>
+            </div>
+
+            <div class="left-description">
+              <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Status</mat-label>
+                <mat-select #status formControlName="status">
+                  <mat-option *ngFor="let status of lstStatus" [value]="status">
+                    {{status}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Sprint</mat-label>
+                <mat-select #sprint formControlName="sprint">
+                  <mat-option *ngFor="let sprint of lstSprint" [value]="sprint">
+                    {{sprint}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Estimated Hours</mat-label>
+                <input matInput #estimatedHours type="number" formControlName="estimatedHours">
+              </mat-form-field>
+
+              <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Completed Hours</mat-label>
+                <input matInput #completedHours type="number" formControlName="completedHours">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <mat-card-actions align="end" style="margin: 8px;">
+            <button mat-flat-button color="primary" type="submit">Save</button>
+          </mat-card-actions>
+        </mat-card-content>
+      </div>
+    </form>
   </mat-card>
-</div>
