@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SprintTask } from 'src/app/interfaces/task.interface';
 
 @Component({
@@ -8,9 +8,15 @@ import { SprintTask } from 'src/app/interfaces/task.interface';
 })
 export class TaskViewComponent implements OnInit {
 
+  sprintTask: any;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  getTask(task: any) {
+    this.sprintTask = task;
   }
 
   lstTask: SprintTask[] = [

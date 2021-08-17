@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatTable } from '@angular/material/table';
 import { SprintTask } from '../../../../interfaces/task.interface';
 
@@ -29,6 +29,7 @@ export class TaskListComponent implements OnInit {
 
   // Receives the data from the parent component.
   @Input() lstTask: SprintTask[] = [];
+  @Output() eventEmitter: any = new EventEmitter();
 
   displayedColumns: string[] = TASK_COLUMNS;
 
@@ -53,6 +54,10 @@ export class TaskListComponent implements OnInit {
       this.dataSource.splice(index, 1);
     }
     this.table.renderRows();
+  }
+
+  edit(task: SprintTask) {
+    this.eventEmitter.emit(task);
   }
 
 }

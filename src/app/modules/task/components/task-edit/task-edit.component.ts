@@ -1,5 +1,5 @@
 import { TaskEditService } from './task-edit.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -9,6 +9,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./task-edit.component.scss']
 })
 export class TaskEditComponent implements OnInit {
+
+  @Input() sprintTask: any; // Is a sprint task data;
 
   frmTask = new FormGroup({});
   lstEmployee: string[] = [];
@@ -21,19 +23,32 @@ export class TaskEditComponent implements OnInit {
     this.lstEmployee = this.svcTask.getEmployees();
     this.lstSprint = this.svcTask.getSprints();
     this.lstStatus = this.svcTask.getStatus();
-    this.initForm();
+    this.initEmptyForm();
   }
 
   ngOnInit(): void {
   }
 
+  ngOnChanges() {
+    this.verifyFormInit();
+  }
+
   onSubmit(){
     this.frmTask.get('createdAt')?.setValue(new Date().toJSON());
     this.snkBar.open(this.svcTask.setTask(this.frmTask.value), ':D');
-    this.initForm();
+    this.verifyFormInit();
   }
 
-  private initForm(): void {
+  verifyFormInit() {
+    // Verify if this component have been received the task from the component-task-list.
+    if (this.sprintTask !== undefined) {
+      this.initEditForm(this.sprintTask);
+    } else {
+      this.initEmptyForm();
+    }
+  }
+
+  private initEmptyForm(): void {
     this.frmTask = this.frmBuilder.group({
       id: [this.svcTask.getTaskId()],
       title: ['', Validators.required],
@@ -46,6 +61,22 @@ export class TaskEditComponent implements OnInit {
       createdBy: [this.svcTask.getProjectManager()],
       createdAt: [new Date().toJSON()],
       idProject: [this.svcTask.getProjectId()],
+    });
+  }
+
+  private initEditForm(task: any): void {
+    this.frmTask = this.frmBuilder.group({
+      id: [task.id],
+      title: [task.title, Validators.required],
+      description: [task.description],
+      status: [task.status, Validators.required],
+      estimatedHours: [task.estimatedHours, Validators.required],
+      completedHours: [task.completedHours],
+      assignedTo: [task.assignedTo, Validators.required],
+      sprint: [task.sprint, Validators.required],
+      createdBy: [task.createdBy],
+      createdAt: [task.createdAt],
+      idProject: [task.idProject],
     });
   }
 
