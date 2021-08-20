@@ -1,4 +1,6 @@
+import { SprintViewService } from './sprint-view.service';
 import { Component, OnInit } from '@angular/core';
+import { Sprint } from '../../../../interfaces/sprint.interface';
 
 @Component({
   selector: 'app-sprint-view',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sprint-view.component.scss']
 })
 export class SprintViewComponent implements OnInit {
+  sprint: any;
+  lstSprint: Sprint[] = this.svc.getSprintList();
 
-  constructor() { }
+  constructor(private svc: SprintViewService) { }
 
   ngOnInit(): void {
   }
 
+
+  getSprint(sprint: any) {
+    this.sprint = sprint;
+  }
 }
