@@ -34,7 +34,6 @@ export class TaskEditComponent implements OnInit {
   }
 
   onSubmit(){
-    this.frmTask.get('createdAt')?.setValue(new Date().toJSON());
     this.snkBar.open(this.svcTask.setTask(this.frmTask.value), ':D');
     this.verifyFormInit();
   }

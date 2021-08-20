@@ -38,6 +38,11 @@ export class SprintListComponent implements OnInit {
     this.dataSource = [...this.lstSprint];
   }
 
+  ngOnChanges() {
+    // Add data from the parent component on the dataSource.
+    this.dataSource = [...this.lstSprint];
+  }
+
   remove(row: any): void {
     const index = this.dataSource.indexOf(row, 0);
     if (index > -1) {
