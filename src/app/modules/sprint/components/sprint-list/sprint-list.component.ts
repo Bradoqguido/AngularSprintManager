@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatTable } from '@angular/material/table';
 import { Sprint } from '../../../../interfaces/sprint.interface';
 
