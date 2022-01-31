@@ -1,7 +1,7 @@
-import { InterfaceSprintTask } from "../interfaces/task.interface";
+import { ISprintTask } from "../interfaces/task.interface";
 
-export class ClassSprintTask implements InterfaceSprintTask {
-  private idTask = 0;
+export class ClassSprintTask implements ISprintTask {
+  private id = 0;
   private title = '';
   private description = '';
   private status = '';
@@ -14,7 +14,7 @@ export class ClassSprintTask implements InterfaceSprintTask {
   private idProject = 0;
 
   constructor(title: string, description: string, status: string, estimatedHours: number, completedHours: number, assignedTo: string, sprint: string, createdBy: string, idProject: number) {
-    this.idTask = this.getLastId();
+    this.id = this.getLastId();
     this.title = title;
     this.description = description;
     this.status = status;
@@ -26,7 +26,7 @@ export class ClassSprintTask implements InterfaceSprintTask {
     this.idProject = idProject;
   }
 
-  getId(): number { return this.idTask; }
+  getId(): number { return this.id; }
 
   getTitle(): string { return this.title; }
   setTitle(title: string): void { this.title = title }
@@ -55,7 +55,7 @@ export class ClassSprintTask implements InterfaceSprintTask {
   getIdProject(): number { return this.idProject; }
 
   clear(): void {
-      this.idTask = 0;
+      this.id = this.getLastId();
       this.title = '';
       this.description = '';
       this.status = '';
