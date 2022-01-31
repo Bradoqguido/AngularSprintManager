@@ -2,6 +2,7 @@ import { TaskEditService } from './task-edit.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Task } from 'src/app/classes/task.class';
 
 @Component({
   selector: 'app-task-edit',
@@ -10,7 +11,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class TaskEditComponent implements OnInit {
 
-  @Input() sprintTask: any; // Is a sprint task data;
+  @Input() inputTask: any; // Is a sprint task data;
+  task: Task = new Task();
 
   frmTask = new FormGroup({});
   lstEmployee: string[] = [];
@@ -23,6 +25,7 @@ export class TaskEditComponent implements OnInit {
     this.lstEmployee = this.svcTask.getEmployees();
     this.lstSprint = this.svcTask.getSprints();
     this.lstStatus = this.svcTask.getStatus();
+    this.task.clear();
     this.initEmptyForm();
   }
 
@@ -30,18 +33,19 @@ export class TaskEditComponent implements OnInit {
   }
 
   ngOnChanges() {
-    this.verifyFormInit();
+    this.verifyFormInput();
   }
 
   onSubmit(){
-    this.snkBar.open(this.svcTask.setTask(this.frmTask.value), ':D');
-    this.verifyFormInit();
+    this.task.save();
+    this.snkBar.open('Task saved!', ':D');
+    this.verifyFormInput();
   }
 
-  verifyFormInit() {
+  verifyFormInput() {
     // Verify if this component have been received the task from the component-task-list.
-    if (this.sprintTask !== undefined) {
-      this.initEditForm(this.sprintTask);
+    if (this.inputTask !== undefined) {
+      this.initEditForm(this.inputTask);
     } else {
       this.initEmptyForm();
     }
@@ -49,33 +53,33 @@ export class TaskEditComponent implements OnInit {
 
   private initEmptyForm(): void {
     this.frmTask = this.frmBuilder.group({
-      id: [this.svcTask.getTaskId()],
-      title: ['', Validators.required],
-      description: [''],
-      status: ['', Validators.required],
-      estimatedHours: [0, Validators.required],
-      completedHours: [0],
-      assignedTo: ['', Validators.required],
-      sprint: ['', Validators.required],
-      createdBy: [this.svcTask.getProjectManager()],
-      createdAt: [new Date().toJSON()],
-      idProject: [this.svcTask.getProjectId()],
+      id: [this.task.getId()],
+      title: [this.task.getTitle(), Validators.required],
+      description: [this.task.getDescription()],
+      status: [this.task.getStatus(), Validators.required],
+      estimatedHours: [this.task.getEstimatedHours(), Validators.required],
+      completedHours: [this.task.getCompletedHours()],
+      assignedTo: [this.task.getAssignedTo(), Validators.required],
+      sprint: [this.task.getSprint(), Validators.required],
+      createdBy: [this.task.getCreatedBy()],
+      createdAt: [this.task.getCreatedAt().toJSON()],
+      idProject: [this.task.getIdProject()],
     });
   }
 
   private initEditForm(task: any): void {
     this.frmTask = this.frmBuilder.group({
-      id: [task.id],
-      title: [task.title, Validators.required],
-      description: [task.description],
+      id: [task.getId()],
+      title: [task.getTitle(), Validators.required],
+      description: [task.getDescription()],
       status: [task.status, Validators.required],
-      estimatedHours: [task.estimatedHours, Validators.required],
-      completedHours: [task.completedHours],
-      assignedTo: [task.assignedTo, Validators.required],
-      sprint: [task.sprint, Validators.required],
-      createdBy: [task.createdBy],
-      createdAt: [task.createdAt],
-      idProject: [task.idProject],
+      estimatedHours: [task.getEstimatedHours(), Validators.required],
+      completedHours: [task.getCompletedHours()],
+      assignedTo: [task.getAssignedTo(), Validators.required],
+      sprint: [task.getSprint(), Validators.required],
+      createdBy: [task.getCreatedBy()],
+      createdAt: [task.getCreatedAt()],
+      idProject: [task.getIdProject()],
     });
   }
 

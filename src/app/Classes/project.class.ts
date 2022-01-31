@@ -7,11 +7,12 @@ export class Project implements IProject {
   private active: boolean = false;
   private accessCode: string = '';
 
-  constructor (name: string, idManager: number, active: boolean, accessCode: string) {
-    this.name = name;
-    this.idManager = idManager;
-    this.active = active;
-    this.accessCode = accessCode;
+  constructor();
+  constructor (name?: string, idManager?: number, active?: boolean, accessCode?: string) {
+    this.name = name!;
+    this.idManager = idManager!;
+    this.active = active!;
+    this.accessCode = accessCode!;
   }
 
   getId(): number { return this.id; }
@@ -48,5 +49,15 @@ export class Project implements IProject {
    */
   private getLastId(): number {
     return 0;
+  }
+
+  ToObject():any {
+      return {
+        id: this.id,
+        name: this.name,
+        idManager: this.idManager,
+        active: this.active,
+        accessCode: this.accessCode,
+      }
   }
 }

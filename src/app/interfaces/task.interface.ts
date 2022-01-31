@@ -1,4 +1,4 @@
-export interface ISprintTask {
+export interface ITask {
   getId(): number;
   getTitle(): string;
   setTitle(title: string): void;
@@ -19,4 +19,5 @@ export interface ISprintTask {
   getIdProject(): number;
   clear(): void;
   save(): string;
+  ToObject(): any;
 }

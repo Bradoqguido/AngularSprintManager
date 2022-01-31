@@ -1,10 +1,10 @@
-import { ISprintTask } from "../interfaces/task.interface";
+import { ITask } from "../interfaces/task.interface";
 
-export class ClassSprintTask implements ISprintTask {
+export class Task implements ITask {
   private id = 0;
   private title = '';
   private description = '';
-  private status = '';
+  private status = ''; // ['New','Active','Closed']
   private estimatedHours = 0;
   private completedHours = 0;
   private assignedTo = '';
@@ -13,17 +13,17 @@ export class ClassSprintTask implements ISprintTask {
   private createdAt = new Date();
   private idProject = 0;
 
-  constructor(title: string, description: string, status: string, estimatedHours: number, completedHours: number, assignedTo: string, sprint: string, createdBy: string, idProject: number) {
-    this.id = this.getLastId();
-    this.title = title;
-    this.description = description;
-    this.status = status;
-    this.estimatedHours = estimatedHours;
-    this.completedHours = completedHours;
-    this.assignedTo = assignedTo;
-    this.sprint = sprint;
-    this.createdBy = createdBy;
-    this.idProject = idProject;
+  constructor(id?: number, title?: string, description?: string, status?: string, estimatedHours?: number, completedHours?: number, assignedTo?: string, sprint?: string, createdBy?: string, idProject?: number) {
+    this.id = id || 0; //this.getLastId();
+    this.title = title || '';
+    this.description = description || '';
+    this.status = status || '';
+    this.estimatedHours = estimatedHours || 0;
+    this.completedHours = completedHours || 0;
+    this.assignedTo = assignedTo || '';
+    this.sprint = sprint || '';
+    this.createdBy = createdBy || '';
+    this.idProject = idProject || 0;
   }
 
   getId(): number { return this.id; }
@@ -58,7 +58,7 @@ export class ClassSprintTask implements ISprintTask {
       this.id = this.getLastId();
       this.title = '';
       this.description = '';
-      this.status = '';
+      this.status = 'New';
       this.estimatedHours = 0;
       this.completedHours = 0;
       this.assignedTo = '';
@@ -80,5 +80,21 @@ export class ClassSprintTask implements ISprintTask {
    */
   private getLastId(): number {
     return 0;
+  }
+
+  ToObject(): any {
+    return {
+      id: this.id,
+      title: this.title,
+      description: this.description,
+      status: this.status,
+      estimatedHours: this.estimatedHours,
+      completedHours: this.completedHours,
+      assignedTo: this.assignedTo,
+      sprint: this.sprint,
+      createdBy: this.createdBy,
+      createdAt: this.createdAt,
+      idProject: this.idProject
+    }
   }
 }

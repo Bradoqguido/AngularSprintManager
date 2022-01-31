@@ -1,60 +1,27 @@
 import { Injectable } from '@angular/core';
-import { Sprint } from '../../../../interfaces/sprint.interface';
+import { Sprint } from '../../../../classes/sprint.class';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SprintViewService {
 
+  lstSprint: Sprint[] = [];
+
   constructor() { }
 
   getSprintList(): Sprint[] {
-    return [
-      {
-        id: 1,
-        idProject: 1,
-        sprint: 'sprint 1',
-        createdBy: 'manager',
-        startDate: new Date(),
-        endDate: new Date(),
-        createdAt: new Date()
-      },
-      {
-        id: 2,
-        idProject: 1,
-        sprint: 'sprint 2',
-        createdBy: 'manager',
-        startDate: new Date(),
-        endDate: new Date(),
-        createdAt: new Date()
-      },
-      {
-        id: 3,
-        idProject: 1,
-        sprint: 'sprint 3',
-        createdBy: 'manager',
-        startDate: new Date(),
-        endDate: new Date(),
-        createdAt: new Date()
-      },
-      {
-        id: 4,
-        idProject: 2,
-        sprint: 'sprint 1',
-        createdBy: 'manager',
-        startDate: new Date(),
-        endDate: new Date(),
-        createdAt: new Date()
-      },
-      {
-        id: 4,
-        idProject: 2,
-        sprint: 'sprint 2',
-        createdBy: 'manager',
-        startDate: new Date(),
-        endDate: new Date(),
-        createdAt: new Date()
-      }
-    ];
+    for (var i = 0; i < 5; i++) {
+      const task = new Sprint(i,
+                              `sprint_${new Date().toJSON()}`,
+                              new Date(),
+                              new Date(),
+                              'system',
+                              new Date(),
+                              1);
+      this.lstSprint.push(task);
+    }
+
+    return this.lstSprint;
   }
 }

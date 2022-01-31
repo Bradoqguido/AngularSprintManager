@@ -1,6 +1,6 @@
 import { TaskViewService } from './task-view.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { SprintTask } from 'src/app/interfaces/task.interface';
+import { Task } from 'src/app/classes/task.class';
 
 @Component({
   selector: 'app-task-view',
@@ -10,7 +10,7 @@ import { SprintTask } from 'src/app/interfaces/task.interface';
 export class TaskViewComponent implements OnInit {
 
   sprintTask: any;
-  lstTask: SprintTask[] = this.svc.getTaskList();
+  lstTask: Task[] = this.svc.getTaskList();
 
   constructor(private svc: TaskViewService) { }
 

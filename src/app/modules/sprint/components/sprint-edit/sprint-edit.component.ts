@@ -2,6 +2,7 @@ import { SprintEditService } from './sprint-edit.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Sprint } from '../../../../classes/sprint.class';
 
 @Component({
   selector: 'app-sprint-edit',
@@ -10,13 +11,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class SprintEditComponent implements OnInit {
 
-  @Input() sprint: any; // Is a sprint task data;
+  @Input() inputSprint: any; // Is a sprint task data;
+  sprint: Sprint = new Sprint();
+
   frmSprint = new FormGroup({});
-  lstSprints: string[] = [];
 
   constructor(private svc: SprintEditService,
               private frmBuilder: FormBuilder,
               private snkBar: MatSnackBar) {
+    this.sprint.clear();
     this.initEmptyForm();
   }
 
@@ -28,14 +31,15 @@ export class SprintEditComponent implements OnInit {
   }
 
   onSubmit(){
-    this.snkBar.open(this.svc.setSprint(this.frmSprint.value), ':D');
+    this.sprint.save();
+    this.snkBar.open('Sprint saved!', ':D');
     this.verifyFormInit();
   }
 
   verifyFormInit() {
     // Verify if this component have been received the task from the component-task-list.
     if (this.sprint !== undefined) {
-      this.initEditForm(this.sprint);
+      this.initEditForm(this.inputSprint);
     } else {
       this.initEmptyForm();
     }
@@ -43,25 +47,25 @@ export class SprintEditComponent implements OnInit {
 
   private initEmptyForm(): void {
     this.frmSprint = this.frmBuilder.group({
-      id: [this.svc.getSprintId()],
-      sprint: ['', Validators.required],
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
-      createdBy: [this.svc.getProjectManager()],
-      createdAt: [new Date().toJSON()],
-      idProject: [this.svc.getProjectId()],
+      id: [this.sprint.getId()],
+      sprint: [this.sprint.getSprint(), Validators.required],
+      startDate: [this.sprint.getStartDate(), Validators.required],
+      endDate: [this.sprint.getEndDate(), Validators.required],
+      createdBy: [this.sprint.getCreatedBy()],
+      createdAt: [this.sprint.getCreatedAt().toJSON()],
+      idProject: [this.sprint.getIdProject()],
     });
   }
 
-  private initEditForm(task: any): void {
+  private initEditForm(sprint: any): void {
     this.frmSprint = this.frmBuilder.group({
-      id: [task.id],
-      sprint: [task.sprint, Validators.required],
-      startDate: [task.startDate, Validators.required],
-      endDate: [task.endDate, Validators.required],
-      createdBy: [task.createdBy],
-      createdAt: [task.createdAt],
-      idProject: [task.idProject],
+      id: [sprint.getId()],
+      sprint: [sprint.getSprint(), Validators.required],
+      startDate: [sprint.getStartDate(), Validators.required],
+      endDate: [sprint.getEndDate(), Validators.required],
+      createdBy: [sprint.getCreatedBy()],
+      createdAt: [sprint.getCreatedAt()],
+      idProject: [sprint.getIdProject()],
     });
   }
 }

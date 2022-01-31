@@ -11,4 +11,5 @@ export interface ISprint {
   getIdProject(): number;
   clear(): void;
   save(): string;
+  ToObject(): any;
 }

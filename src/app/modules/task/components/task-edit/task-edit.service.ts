@@ -7,10 +7,6 @@ export class TaskEditService {
 
   constructor() { }
 
-  getTaskId(): number {
-    return 1;
-  }
-
   getEmployees(): string[] {
     return ['Sonny','Hanna','Jack', 'Harry'];
   }
@@ -21,11 +17,6 @@ export class TaskEditService {
 
   getStatus(): string[] {
     return ['New','Active','Closed'];
-  }
-
-  setTask(task: object): string {
-    console.log(task);
-    return 'Task saved!';
   }
 
   getProjectManager(): string {

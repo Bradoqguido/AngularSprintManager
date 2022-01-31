@@ -20,26 +20,31 @@ export class SprintListComponent implements OnInit {
   // Receives the data from the parent component.
   @Input() lstSprint: Sprint[] = [];
   @Output() eventEmitter: any = new EventEmitter();
+  lstSprintObjects: any[] = [];
 
   displayedColumns: string[] = SPRINT_COLUMNS;
 
   // Declare the data source as undefined to add data on ngOnInit.
-  dataSource = [...this.lstSprint];
+  dataSource = [...this.lstSprintObjects];
 
   expandedElement?: Sprint | null;
 
   @ViewChild(MatTable) table: any;
 
-  constructor() { }
+  constructor() {
+    this.lstSprint.forEach(e => {
+      this.lstSprintObjects.push(e.ToObject());
+    });
+  }
 
   ngOnInit(): void {
     // Add data from the parent component on the dataSource.
-    this.dataSource = [...this.lstSprint];
+    this.dataSource = [...this.lstSprintObjects];
   }
 
   ngOnChanges() {
     // Add data from the parent component on the dataSource.
-    this.dataSource = [...this.lstSprint];
+    this.dataSource = [...this.lstSprintObjects];
   }
 
   remove(row: any): void {

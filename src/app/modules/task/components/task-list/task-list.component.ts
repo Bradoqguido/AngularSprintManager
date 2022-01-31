@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatTable } from '@angular/material/table';
-import { SprintTask } from '../../../../interfaces/task.interface';
+import { Task } from '../../../../classes/task.class';
 
 const TASK_COLUMNS = [
   'id',
@@ -28,29 +28,33 @@ const TASK_COLUMNS = [
 export class TaskListComponent implements OnInit {
 
   // Receives the data from the parent component.
-  @Input() lstTask: SprintTask[] = [];
+  @Input() lstTask: Task[] = [];
   @Output() eventEmitter: any = new EventEmitter();
+  lstTaskObjects: any[] = [];
 
   displayedColumns: string[] = TASK_COLUMNS;
 
   // Declare the data source as undefined to add data on ngOnInit.
-  dataSource = [...this.lstTask];
+  dataSource = [...this.lstTaskObjects];
 
-  expandedElement?: SprintTask | null;
+  expandedElement?: Task | null;
 
   @ViewChild(MatTable) table: any;
 
   constructor() {
+    this.lstTask.forEach(e => {
+      this.lstTaskObjects.push(e.ToObject());
+    });
   }
 
   ngOnInit(): void {
     // Add data from the parent component on the dataSource.
-    this.dataSource = [...this.lstTask];
+    this.dataSource = [...this.lstTaskObjects];
   }
 
   ngOnChanges() {
     // Add data from the parent component on the dataSource.
-    this.dataSource = [...this.lstTask];
+    this.dataSource = [...this.lstTaskObjects];
   }
 
   delete(row: any): void {
@@ -61,7 +65,7 @@ export class TaskListComponent implements OnInit {
     this.table.renderRows();
   }
 
-  edit(task: SprintTask) {
+  edit(task: Task) {
     this.eventEmitter.emit(task);
   }
 

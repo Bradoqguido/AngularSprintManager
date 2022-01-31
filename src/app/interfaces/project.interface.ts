@@ -10,4 +10,5 @@ export interface IProject {
   setAcessCode(acessCode: string): void;
   clear(): void;
   save(): string;
+  ToObject(): any;
 }
