@@ -12,4 +12,5 @@ export interface ISprint {
   clear(): void;
   save(): string;
   ToObject(): any;
+  FromObject(sprint: any): any;
 }

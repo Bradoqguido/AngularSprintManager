@@ -32,12 +32,13 @@ export class SprintListComponent implements OnInit {
   @ViewChild(MatTable) table: any;
 
   constructor() {
-    this.lstSprint.forEach(e => {
-      this.lstSprintObjects.push(e.ToObject());
-    });
   }
 
   ngOnInit(): void {
+    this.lstSprint.forEach(e => {
+      this.lstSprintObjects.push(e.ToObject());
+    });
+
     // Add data from the parent component on the dataSource.
     this.dataSource = [...this.lstSprintObjects];
   }
@@ -55,7 +56,7 @@ export class SprintListComponent implements OnInit {
     this.table.renderRows();
   }
 
-  edit(sprint: Sprint) {
+  edit(sprint: any) {
     this.eventEmitter.emit(sprint);
   }
 

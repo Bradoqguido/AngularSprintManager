@@ -41,13 +41,13 @@ export class TaskListComponent implements OnInit {
 
   @ViewChild(MatTable) table: any;
 
-  constructor() {
+  constructor() { }
+
+  ngOnInit(): void {
     this.lstTask.forEach(e => {
       this.lstTaskObjects.push(e.ToObject());
     });
-  }
 
-  ngOnInit(): void {
     // Add data from the parent component on the dataSource.
     this.dataSource = [...this.lstTaskObjects];
   }
@@ -65,7 +65,7 @@ export class TaskListComponent implements OnInit {
     this.table.renderRows();
   }
 
-  edit(task: Task) {
+  edit(task: any) {
     this.eventEmitter.emit(task);
   }
 

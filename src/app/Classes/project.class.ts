@@ -59,4 +59,12 @@ export class Project implements IProject {
         accessCode: this.accessCode,
       }
   }
+
+  FromObject(project: any):any {
+    this.id = project.id;
+    this.name = project.name;
+    this.idManager = project.idManager;
+    this.active = project.active;
+    this.accessCode = project.accessCode;
+  }
 }

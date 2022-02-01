@@ -1,15 +1,40 @@
-<div style="margin: 8px;">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Create project</mat-card-title>
-    </mat-card-header>
+<!-- <mat-card>
+  <form class="form" #taskForm="ngForm" (ngSubmit)="onSubmit()">
+    <div [formGroup]="frmSprint">
+      <mat-card-header>
+        <mat-card-title>Task {{frmSprint.get('id')?.value}}</mat-card-title>
+      </mat-card-header>
 
-    <mat-card-content>
-      Text content
-    </mat-card-content>
+      <mat-card-content>
 
-    <mat-card-actions align="end">
-      <button mat-flat-button color="primary" (click)="create()">Create project</button>
-    </mat-card-actions>
-  </mat-card>
-</div>
+        <div class="sprint-detail">
+          <div class="full-width">
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Sprint name</mat-label>
+              <input matInput #sprint formControlName="sprint" placeholder="Ex. sprint_03-01-2021_09-01-2021">
+            </mat-form-field>
+          </div>
+
+          <div class="left-description">
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Sprint start date</mat-label>
+              <input matInput #sprint formControlName="startDate" type="date" placeholder="Ex. 03-01-2021">
+            </mat-form-field>
+          </div>
+
+          <div class="left-description">
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Sprint end date</mat-label>
+              <input matInput #sprint formControlName="endDate" type="date" placeholder="Ex. 09-01-2021">
+            </mat-form-field>
+          </div>
+        </div>
+
+      </mat-card-content>
+
+        <mat-card-actions align="end" style="margin: 8px;">
+          <button mat-flat-button color="primary" type="submit">Save</button>
+        </mat-card-actions>
+    </div>
+  </form>
+</mat-card> -->

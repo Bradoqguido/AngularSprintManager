@@ -29,13 +29,13 @@ export class ProjectListComponent implements OnInit {
 
   @ViewChild(MatTable) table: any;
 
-  constructor() {
+  constructor() { }
+
+  ngOnInit(): void {
     this.lstProject.forEach(e => {
       this.lstProjectObjects.push(e.ToObject());
     });
-   }
 
-  ngOnInit(): void {
     // Add data from the parent component on the dataSource.
     this.dataSource = [...this.lstProjectObjects];
   }
@@ -53,7 +53,7 @@ export class ProjectListComponent implements OnInit {
     this.table.renderRows();
   }
 
-  edit(project: Project) {
+  edit(project: any) {
     this.eventEmitter.emit(project);
   }
 

@@ -11,7 +11,7 @@ import { Task } from 'src/app/classes/task.class';
 })
 export class TaskEditComponent implements OnInit {
 
-  @Input() inputTask: any; // Is a sprint task data;
+  @Input() inputTask: any ; // Is a sprint task data;
   task: Task = new Task();
 
   frmTask = new FormGroup({});
@@ -25,8 +25,7 @@ export class TaskEditComponent implements OnInit {
     this.lstEmployee = this.svcTask.getEmployees();
     this.lstSprint = this.svcTask.getSprints();
     this.lstStatus = this.svcTask.getStatus();
-    this.task.clear();
-    this.initEmptyForm();
+    this.verifyFormInput();
   }
 
   ngOnInit(): void {
@@ -45,13 +44,14 @@ export class TaskEditComponent implements OnInit {
   verifyFormInput() {
     // Verify if this component have been received the task from the component-task-list.
     if (this.inputTask !== undefined) {
-      this.initEditForm(this.inputTask);
+      this.task.FromObject(this.inputTask);
     } else {
-      this.initEmptyForm();
+      this.task.clear();
     }
+    this.initForm();
   }
 
-  private initEmptyForm(): void {
+  private initForm(): void {
     this.frmTask = this.frmBuilder.group({
       id: [this.task.getId()],
       title: [this.task.getTitle(), Validators.required],
@@ -64,22 +64,6 @@ export class TaskEditComponent implements OnInit {
       createdBy: [this.task.getCreatedBy()],
       createdAt: [this.task.getCreatedAt().toJSON()],
       idProject: [this.task.getIdProject()],
-    });
-  }
-
-  private initEditForm(task: any): void {
-    this.frmTask = this.frmBuilder.group({
-      id: [task.getId()],
-      title: [task.getTitle(), Validators.required],
-      description: [task.getDescription()],
-      status: [task.status, Validators.required],
-      estimatedHours: [task.getEstimatedHours(), Validators.required],
-      completedHours: [task.getCompletedHours()],
-      assignedTo: [task.getAssignedTo(), Validators.required],
-      sprint: [task.getSprint(), Validators.required],
-      createdBy: [task.getCreatedBy()],
-      createdAt: [task.getCreatedAt()],
-      idProject: [task.getIdProject()],
     });
   }
 

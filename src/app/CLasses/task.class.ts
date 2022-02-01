@@ -26,7 +26,7 @@ export class Task implements ITask {
     this.idProject = idProject || 0;
   }
 
-  getId(): number { return this.id; }
+  public getId(): number { return this.id; }
 
   getTitle(): string { return this.title; }
   setTitle(title: string): void { this.title = title }
@@ -96,5 +96,19 @@ export class Task implements ITask {
       createdAt: this.createdAt,
       idProject: this.idProject
     }
+  }
+
+  FromObject(task: any): void {
+    this.id = task.id;
+    this.title = task.title;
+    this.description = task.description;
+    this.status = task.status;
+    this.estimatedHours = task.estimatedHours;
+    this.completedHours = task.completedHours;
+    this.assignedTo = task.assignedTo;
+    this.sprint = task.sprint;
+    this.createdBy = task.createdBy;
+    this.createdAt = task.createdAt;
+    this.idProject = task.idProject;
   }
 }

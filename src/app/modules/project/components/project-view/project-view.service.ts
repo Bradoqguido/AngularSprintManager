@@ -19,7 +19,6 @@ export class ProjectViewService {
                               );
       this.lstSprint.push(task);
     }
-
     return this.lstSprint;
   }
 }

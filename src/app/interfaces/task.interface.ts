@@ -20,4 +20,5 @@ export interface ITask {
   clear(): void;
   save(): string;
   ToObject(): any;
+  FromObject(task: any): any;
 }

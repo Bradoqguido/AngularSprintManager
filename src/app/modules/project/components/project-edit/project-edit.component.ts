@@ -14,14 +14,11 @@ export class ProjectEditComponent implements OnInit {
   @Input() inputProject: any; // Is a project project data;
   project: Project = new Project();
 
-  frmproject = new FormGroup({});
+  frmProject = new FormGroup({});
 
   constructor(private svc: ProjectEditService,
               private frmBuilder: FormBuilder,
-              private snkBar: MatSnackBar) {
-    this.project.clear();
-    this.initEmptyForm();
-  }
+              private snkBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -39,29 +36,20 @@ export class ProjectEditComponent implements OnInit {
   verifyFormInit() {
     // Verify if this component have been received the project from the component-task-list.
     if (this.inputProject !== undefined) {
-      this.initEditForm(this.inputProject);
+      this.project.FromObject(this.inputProject);
     } else {
-      this.initEmptyForm();
+      this.project.clear();
     }
+    this.initForm();
   }
 
-  private initEmptyForm(): void {
-    this.frmproject = this.frmBuilder.group({
+  private initForm(): void {
+    this.frmProject = this.frmBuilder.group({
       id: [this.project.getId()],
       name: [this.project.getName(), Validators.required],
       idManager: [this.project.getIdManager(), Validators.required],
       active: [this.project.getActive(), Validators.required],
       accessCode: [this.project.getAcessCode()],
-    });
-  }
-
-  private initEditForm(project: Project): void {
-    this.frmproject = this.frmBuilder.group({
-      id: [project.getId()],
-      name: [project.getName(), Validators.required],
-      idManager: [project.getIdManager(), Validators.required],
-      active: [project.getActive(), Validators.required],
-      accessCode: [project.getAcessCode()],
     });
   }
 }

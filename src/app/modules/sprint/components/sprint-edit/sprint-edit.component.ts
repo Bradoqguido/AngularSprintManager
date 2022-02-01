@@ -18,10 +18,7 @@ export class SprintEditComponent implements OnInit {
 
   constructor(private svc: SprintEditService,
               private frmBuilder: FormBuilder,
-              private snkBar: MatSnackBar) {
-    this.sprint.clear();
-    this.initEmptyForm();
-  }
+              private snkBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -39,13 +36,14 @@ export class SprintEditComponent implements OnInit {
   verifyFormInit() {
     // Verify if this component have been received the sprint from the component-task-list.
     if (this.inputSprint !== undefined) {
-      this.initEditForm(this.inputSprint);
+      this.sprint.FromObject(this.inputSprint);
     } else {
-      this.initEmptyForm();
+      this.sprint.clear();
     }
+    this.initForm();
   }
 
-  private initEmptyForm(): void {
+  private initForm(): void {
     this.frmSprint = this.frmBuilder.group({
       id: [this.sprint.getId()],
       sprint: [this.sprint.getSprint(), Validators.required],
@@ -54,18 +52,6 @@ export class SprintEditComponent implements OnInit {
       createdBy: [this.sprint.getCreatedBy()],
       createdAt: [this.sprint.getCreatedAt().toJSON()],
       idProject: [this.sprint.getIdProject()],
-    });
-  }
-
-  private initEditForm(sprint: Sprint): void {
-    this.frmSprint = this.frmBuilder.group({
-      id: [sprint.getId()],
-      sprint: [sprint.getSprint(), Validators.required],
-      startDate: [sprint.getStartDate(), Validators.required],
-      endDate: [sprint.getEndDate(), Validators.required],
-      createdBy: [sprint.getCreatedBy()],
-      createdAt: [sprint.getCreatedAt()],
-      idProject: [sprint.getIdProject()],
     });
   }
 }

@@ -70,4 +70,14 @@ export class Sprint implements ISprint {
         idProject: this.idProject
       }
   }
+
+  FromObject(sprint: any):any {
+    this.id = sprint.id;
+    this.sprint = sprint.sprint;
+    this.startDate = sprint.startDate;
+    this.endDate = sprint.endDate;
+    this.createdBy = sprint.createdBy;
+    this.createdAt = sprint.createdAt;
+    this.idProject = sprint.idProject;
+  }
 }

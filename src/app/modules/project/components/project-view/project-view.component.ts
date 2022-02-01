@@ -15,6 +15,7 @@ export class ProjectViewComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   getProject(project: any) {
     this.lstProject = project;
   }

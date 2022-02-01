@@ -1,6 +1,6 @@
 import { SprintViewService } from './sprint-view.service';
 import { Component, OnInit } from '@angular/core';
-import { Sprint } from '../../../../interfaces/sprint.interface';
+import { Sprint } from 'src/app/classes/sprint.class';
 
 @Component({
   selector: 'app-sprint-view',

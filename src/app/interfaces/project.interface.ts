@@ -11,4 +11,5 @@ export interface IProject {
   clear(): void;
   save(): string;
   ToObject(): any;
+  FromObject(project: any): any;
 }
