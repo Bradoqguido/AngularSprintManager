@@ -1,8 +1,8 @@
 <mat-card>
-  <form class="form" #taskForm="ngForm" (ngSubmit)="onSubmit()">
+  <form class="form" #sprintForm="ngForm" (ngSubmit)="onSubmit()">
     <div [formGroup]="frmSprint">
       <mat-card-header>
-        <mat-card-title>Task {{frmSprint.get('id')?.value}}</mat-card-title>
+        <mat-card-title>Sprint {{frmSprint.get('id')?.value}}</mat-card-title>
       </mat-card-header>
 
       <mat-card-content>

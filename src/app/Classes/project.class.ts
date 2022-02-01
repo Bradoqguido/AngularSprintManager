@@ -5,12 +5,16 @@ export class Project implements IProject {
   private name: string = '';
   private idManager: number = 0;
   private active: boolean = false;
+  private startDate: Date = new Date();
+  private endDate: Date = new Date();
   private accessCode: string = '';
 
-  constructor (name?: string, idManager?: number, active?: boolean, accessCode?: string) {
+  constructor (name?: string, idManager?: number, active?: boolean, startDate?: Date, endDate?: Date, accessCode?: string) {
     this.name = name || '';
     this.idManager = idManager || 0;
     this.active = active || false;
+    this.startDate = startDate || new Date();
+    this.endDate = endDate || new Date();
     this.accessCode = accessCode || '';
   }
 
@@ -24,6 +28,12 @@ export class Project implements IProject {
 
   getActive(): boolean { return this.active; }
   setActive(active: boolean): void { this.active = active; }
+
+  setStartDate(startDate: Date): void { this.startDate = startDate; }
+  getStartDate(): Date { return this.startDate; }
+
+  setEndDate(endDate: Date): void { this.endDate = endDate; }
+  getEndDate(): Date { return this.endDate; }
 
   getAcessCode(): string { return this.accessCode; }
   setAcessCode(acessCode: string): void { this.accessCode = acessCode; }
@@ -56,6 +66,8 @@ export class Project implements IProject {
         name: this.name,
         idManager: this.idManager,
         active: this.active,
+        startDate: this.startDate,
+        endDate: this.endDate,
         accessCode: this.accessCode,
       }
   }
@@ -65,6 +77,8 @@ export class Project implements IProject {
     this.name = project.name;
     this.idManager = project.idManager;
     this.active = project.active;
+    this.startDate = project.startDate;
+    this.endDate = project.endDate;
     this.accessCode = project.accessCode;
   }
 }

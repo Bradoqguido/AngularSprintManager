@@ -6,19 +6,21 @@ import { Project } from 'src/app/classes/project.class';
 })
 export class ProjectViewService {
 
-  lstSprint: Project[] = [];
+  lstProject: Project[] = [];
 
   constructor() { }
 
   getProjectList(): Project[] {
     for (var i = 0; i < 5; i++) {
-      const task = new Project(`manager ${i}`,
+      const project = new Project(`project ${i}`,
                                i,
                                true,
+                               new Date(),
+                               new Date(),
                                `5362${i}`
                               );
-      this.lstSprint.push(task);
+      this.lstProject.push(project);
     }
-    return this.lstSprint;
+    return this.lstProject;
   }
 }

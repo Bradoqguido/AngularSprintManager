@@ -1,7 +1,7 @@
-import { TaskEditService } from './task-edit.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TaskEditService } from './task-edit.service';
 import { Task } from 'src/app/classes/task.class';
 
 @Component({
@@ -19,12 +19,12 @@ export class TaskEditComponent implements OnInit {
   lstSprint: string[] = [];
   lstStatus: string[] = [];
 
-  constructor(private svcTask: TaskEditService,
+  constructor(private svc: TaskEditService,
               private frmBuilder: FormBuilder,
               private snkBar: MatSnackBar) {
-    this.lstEmployee = this.svcTask.getEmployees();
-    this.lstSprint = this.svcTask.getSprints();
-    this.lstStatus = this.svcTask.getStatus();
+    this.lstEmployee = this.svc.getEmployees();
+    this.lstSprint = this.svc.getSprints();
+    this.lstStatus = this.svc.getStatus();
     this.verifyFormInput();
   }
 
@@ -35,7 +35,7 @@ export class TaskEditComponent implements OnInit {
     this.verifyFormInput();
   }
 
-  onSubmit(){
+  onSubmit() {
     this.task.save();
     this.snkBar.open('Task saved!', ':D');
     this.verifyFormInput();

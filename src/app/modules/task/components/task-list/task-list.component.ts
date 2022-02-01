@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatTable } from '@angular/material/table';
-import { Task } from '../../../../classes/task.class';
+import { Task } from 'src/app/classes/task.class';
 
 const TASK_COLUMNS = [
   'id',

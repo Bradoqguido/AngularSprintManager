@@ -1,33 +1,58 @@
 <!-- <mat-card>
-  <form class="form" #taskForm="ngForm" (ngSubmit)="onSubmit()">
-    <div [formGroup]="frmSprint">
+  <form class="form" #projectForm="ngForm" (ngSubmit)="onSubmit()">
+    <div [formGroup]="frmProject">
       <mat-card-header>
-        <mat-card-title>Task {{frmSprint.get('id')?.value}}</mat-card-title>
+        <mat-card-title>Project {{frmProject.get('id')?.value}}</mat-card-title>
       </mat-card-header>
 
       <mat-card-content>
 
-        <div class="sprint-detail">
+        <div class="project-detail" formGroupName="frmProject">
           <div class="full-width">
             <mat-form-field class="full-width" appearance="fill">
-              <mat-label>Sprint name</mat-label>
-              <input matInput #sprint formControlName="sprint" placeholder="Ex. sprint_03-01-2021_09-01-2021">
+              <mat-label>Project name</mat-label>
+              <input matInput #project formControlName="name" type="text" placeholder="Ex. Purchasing project">
+            </mat-form-field>
+          </div>
+
+          <!-- <div class="full-width">
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Project manager</mat-label>
+              <mat-select #assignedTo formControlName="project">
+                <mat-option *ngFor="let manager of lstManager" [value]="manager.id">
+                  {{manager.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div> --
+
+          <!-- <div class="full-width">
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Project status</mat-label>
+              active | inative
+            </mat-form-field>
+          </div> --
+
+          <div class="left-description">
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Project start date</mat-label>
+              <input matInput #project formControlName="startDate" type="date" placeholder="Ex. 03-01-2021">
             </mat-form-field>
           </div>
 
           <div class="left-description">
             <mat-form-field class="full-width" appearance="fill">
-              <mat-label>Sprint start date</mat-label>
-              <input matInput #sprint formControlName="startDate" type="date" placeholder="Ex. 03-01-2021">
+              <mat-label>Project end date</mat-label>
+              <input matInput #project formControlName="endDate" type="date" placeholder="Ex. 09-01-2021">
             </mat-form-field>
           </div>
 
-          <div class="left-description">
+          <!-- <div class="left-description">
             <mat-form-field class="full-width" appearance="fill">
-              <mat-label>Sprint end date</mat-label>
-              <input matInput #sprint formControlName="endDate" type="date" placeholder="Ex. 09-01-2021">
+              <mat-label>Access Code</mat-label>
+              <input matInput #project formControlName="accessCode" type="text" placeholder="Ex. 657Jy@0">
             </mat-form-field>
-          </div>
+          </div> --
         </div>
 
       </mat-card-content>
