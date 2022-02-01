@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
-import { Sprint } from '../../../../interfaces/sprint.interface';
+import { Sprint } from 'src/app/classes/sprint.class';
 
 const SPRINT_COLUMNS = [
   'sprint',

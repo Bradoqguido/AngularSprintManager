@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
-import { Project } from './../../../../interfaces/project.interface';
+import { Project } from 'src/app/classes/project.class';
 
 const PROJECT_COLUMNS = [
   'name',
@@ -18,26 +18,31 @@ export class ProjectListComponent implements OnInit {
   // Receives the data from the parent component.
   @Input() lstProject: Project[] = [];
   @Output() eventEmitter: any = new EventEmitter();
+  lstProjectObjects: any[] = [];
 
   displayedColumns: string[] = PROJECT_COLUMNS;
 
   // Declare the data source as undefined to add data on ngOnInit.
-  dataSource = [...this.lstProject];
+  dataSource = [...this.lstProjectObjects];
 
   expandedElement?: Project | null;
 
   @ViewChild(MatTable) table: any;
 
-  constructor() { }
+  constructor() {
+    this.lstProject.forEach(e => {
+      this.lstProjectObjects.push(e.ToObject());
+    });
+   }
 
   ngOnInit(): void {
     // Add data from the parent component on the dataSource.
-    this.dataSource = [...this.lstProject];
+    this.dataSource = [...this.lstProjectObjects];
   }
 
   ngOnChanges() {
     // Add data from the parent component on the dataSource.
-    this.dataSource = [...this.lstProject];
+    this.dataSource = [...this.lstProjectObjects];
   }
 
   remove(row: any): void {

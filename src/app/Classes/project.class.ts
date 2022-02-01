@@ -7,12 +7,11 @@ export class Project implements IProject {
   private active: boolean = false;
   private accessCode: string = '';
 
-  constructor();
   constructor (name?: string, idManager?: number, active?: boolean, accessCode?: string) {
-    this.name = name!;
-    this.idManager = idManager!;
-    this.active = active!;
-    this.accessCode = accessCode!;
+    this.name = name || '';
+    this.idManager = idManager || 0;
+    this.active = active || false;
+    this.accessCode = accessCode || '';
   }
 
   getId(): number { return this.id; }

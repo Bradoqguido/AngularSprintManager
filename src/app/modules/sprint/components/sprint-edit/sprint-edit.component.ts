@@ -1,8 +1,8 @@
-import { SprintEditService } from './sprint-edit.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Sprint } from '../../../../classes/sprint.class';
+import { Sprint } from 'src/app/classes/sprint.class';
+import { SprintEditService } from './sprint-edit.service';
 
 @Component({
   selector: 'app-sprint-edit',
@@ -11,7 +11,7 @@ import { Sprint } from '../../../../classes/sprint.class';
 })
 export class SprintEditComponent implements OnInit {
 
-  @Input() inputSprint: any; // Is a sprint task data;
+  @Input() inputSprint: any; // Is a sprint sprint data;
   sprint: Sprint = new Sprint();
 
   frmSprint = new FormGroup({});
@@ -37,8 +37,8 @@ export class SprintEditComponent implements OnInit {
   }
 
   verifyFormInit() {
-    // Verify if this component have been received the task from the component-task-list.
-    if (this.sprint !== undefined) {
+    // Verify if this component have been received the sprint from the component-task-list.
+    if (this.inputSprint !== undefined) {
       this.initEditForm(this.inputSprint);
     } else {
       this.initEmptyForm();
@@ -57,7 +57,7 @@ export class SprintEditComponent implements OnInit {
     });
   }
 
-  private initEditForm(sprint: any): void {
+  private initEditForm(sprint: Sprint): void {
     this.frmSprint = this.frmBuilder.group({
       id: [sprint.getId()],
       sprint: [sprint.getSprint(), Validators.required],

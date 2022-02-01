@@ -1,50 +1,25 @@
 import { Injectable } from '@angular/core';
-import { Project } from 'src/app/interfaces/project.interface';
+import { Project } from 'src/app/classes/project.class';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectViewService {
 
+  lstSprint: Project[] = [];
+
   constructor() { }
 
   getProjectList(): Project[] {
-    return [
-      {
-        id: 1,
-        name: 'project 1',
-        idManager: '1',
-        accessCode: '',
-        active: true
-      },
-      {
-        id: 2,
-        name: 'project 2',
-        idManager: '1',
-        accessCode: '',
-        active: true
-      },
-      {
-        id: 3,
-        name: 'project 3',
-        idManager: '1',
-        accessCode: '',
-        active: true
-      },
-      {
-        id: 4,
-        name: 'project 4',
-        idManager: '1',
-        accessCode: '',
-        active: true
-      },
-      {
-        id: 4,
-        name: 'project 4',
-        idManager: '1',
-        accessCode: '',
-        active: true
-      }
-    ];
+    for (var i = 0; i < 5; i++) {
+      const task = new Project(`manager ${i}`,
+                               i,
+                               true,
+                               `5362${i}`
+                              );
+      this.lstSprint.push(task);
+    }
+
+    return this.lstSprint;
   }
 }
