@@ -1,4 +1,4 @@
-<!-- <mat-card>
+<mat-card>
   <form class="form" #projectForm="ngForm" (ngSubmit)="onSubmit()">
     <div [formGroup]="frmProject">
       <mat-card-header>
@@ -6,53 +6,40 @@
       </mat-card-header>
 
       <mat-card-content>
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Project name</mat-label>
+          <input matInput #name formControlName="name" placeholder="Ex. Purchasing project...">
+        </mat-form-field>
 
-        <div class="project-detail" formGroupName="frmProject">
-          <div class="full-width">
-            <mat-form-field class="full-width" appearance="fill">
-              <mat-label>Project name</mat-label>
-              <input matInput #project formControlName="name" type="text" placeholder="Ex. Purchasing project">
-            </mat-form-field>
-          </div>
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Project manager</mat-label>
+          <mat-select #idManager formControlName="idManager">
+            <mat-option *ngFor="let manager of lstManager" [value]="manager.id">
+              {{manager.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-          <!-- <div class="full-width">
-            <mat-form-field class="full-width" appearance="fill">
-              <mat-label>Project manager</mat-label>
-              <mat-select #assignedTo formControlName="project">
-                <mat-option *ngFor="let manager of lstManager" [value]="manager.id">
-                  {{manager.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div> --
+        <!-- <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Project status</mat-label>
+          <mat-slide-toggle #active formControlName="active"></mat-slide-toggle>
+        </mat-form-field> -->
 
-          <!-- <div class="full-width">
-            <mat-form-field class="full-width" appearance="fill">
-              <mat-label>Project status</mat-label>
-              active | inative
-            </mat-form-field>
-          </div> --
+        <div class="left-description">
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Project start date</mat-label>
+            <input matInput #startDate formControlName="startDate" type="date" placeholder="Ex. 03-01-2021">
+          </mat-form-field>
 
-          <div class="left-description">
-            <mat-form-field class="full-width" appearance="fill">
-              <mat-label>Project start date</mat-label>
-              <input matInput #project formControlName="startDate" type="date" placeholder="Ex. 03-01-2021">
-            </mat-form-field>
-          </div>
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Project end date</mat-label>
+            <input matInput #endDate formControlName="endDate" type="date" placeholder="Ex. 09-01-2021">
+          </mat-form-field>
 
-          <div class="left-description">
-            <mat-form-field class="full-width" appearance="fill">
-              <mat-label>Project end date</mat-label>
-              <input matInput #project formControlName="endDate" type="date" placeholder="Ex. 09-01-2021">
-            </mat-form-field>
-          </div>
-
-          <!-- <div class="left-description">
-            <mat-form-field class="full-width" appearance="fill">
-              <mat-label>Access Code</mat-label>
-              <input matInput #project formControlName="accessCode" type="text" placeholder="Ex. 657Jy@0">
-            </mat-form-field>
-          </div> --
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Access Code</mat-label>
+            <input matInput #accessCode formControlName="accessCode" type="text" placeholder="Ex. 657Jy@0">
+          </mat-form-field>
         </div>
 
       </mat-card-content>
@@ -62,4 +49,4 @@
         </mat-card-actions>
     </div>
   </form>
-</mat-card> -->
+</mat-card>

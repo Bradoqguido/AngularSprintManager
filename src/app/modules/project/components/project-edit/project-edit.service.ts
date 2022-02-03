@@ -14,8 +14,8 @@ export class ProjectEditService {
         name: 'Manager 1'
       },
       {
-        id: 0,
-        name: 'Manager 1'
+        id: 1,
+        name: 'Manager 2'
       }
     ]
   }

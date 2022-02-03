@@ -15,3 +15,8 @@ export interface IEmployee {
   save(): string;
   ToObject(): any;
 }
+
+export interface IManagerSelectBox {
+  id: number,
+  name: string
+}

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProjectEditService } from './project-edit.service';
 import { Project } from 'src/app/classes/project.class';
+import { IManagerSelectBox } from 'src/app/interfaces/employee.interface';
 
 @Component({
   selector: 'app-project-edit',
@@ -15,28 +16,28 @@ export class ProjectEditComponent implements OnInit {
   project: Project = new Project();
 
   frmProject = new FormGroup({});
-  lstManager: [] = [];
+  lstManager: IManagerSelectBox[] = this.svc.getManager();
 
   constructor(private svc: ProjectEditService,
               private frmBuilder: FormBuilder,
               private snkBar: MatSnackBar) {
-    this.lstManager = this.svc.getManager();
+    this.verifyFormInput();
   }
 
   ngOnInit(): void {
   }
 
   ngOnChanges() {
-    this.verifyFormInit();
+    this.verifyFormInput();
   }
 
   onSubmit(){
     this.project.save();
     this.snkBar.open('Project saved!', ':D');
-    this.verifyFormInit();
+    this.verifyFormInput();
   }
 
-  verifyFormInit() {
+  verifyFormInput() {
     // Verify if this component have been received the project from the component-task-list.
     if (this.inputProject !== undefined) {
       this.project.FromObject(this.inputProject);
