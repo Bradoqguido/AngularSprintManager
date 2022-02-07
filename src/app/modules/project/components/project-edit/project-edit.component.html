@@ -20,10 +20,9 @@
           </mat-select>
         </mat-form-field>
 
-        <!-- <mat-form-field class="full-width" appearance="fill">
-          <mat-label>Project status</mat-label>
-          <mat-slide-toggle #active formControlName="active"></mat-slide-toggle>
-        </mat-form-field> -->
+        <mat-slide-toggle #active formControlName="active" color="primary" style="margin:8px">
+          Project is: {{this.frmProject.controls["active"].value ? "Active" : "Inactive"}}
+        </mat-slide-toggle>
 
         <div class="left-description">
           <mat-form-field class="full-width" appearance="fill">
