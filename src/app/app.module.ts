@@ -18,6 +18,9 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -31,12 +34,15 @@ import { MatIconModule } from '@angular/material/icon';
     MatCardModule,
     MatButtonModule,
     MatInputModule,
+    MatToolbarModule,
+    MatTabsModule,
     FormsModule,
     MatTableModule,
     MatIconModule,
     ProjectModule,
     SprintModule,
-    TaskModule
+    TaskModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,6 +6,7 @@
       </mat-card-header>
 
       <mat-card-content>
+
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Project name</mat-label>
           <input matInput #name formControlName="name" placeholder="Ex. Purchasing project...">
@@ -24,21 +25,27 @@
           Project is: {{this.frmProject.controls["active"].value ? "Active" : "Inactive"}}
         </mat-slide-toggle>
 
-        <div class="left-description">
-          <mat-form-field class="full-width" appearance="fill">
-            <mat-label>Project start date</mat-label>
-            <input matInput #startDate formControlName="startDate" type="date" placeholder="Ex. 03-01-2021">
-          </mat-form-field>
+        <div class="project-detail">
+          <div class="left-description">
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Project start date</mat-label>
+              <input matInput #startDate formControlName="startDate" type="date" placeholder="Ex. 03-01-2021">
+            </mat-form-field>
+          </div>
 
-          <mat-form-field class="full-width" appearance="fill">
-            <mat-label>Project end date</mat-label>
-            <input matInput #endDate formControlName="endDate" type="date" placeholder="Ex. 09-01-2021">
-          </mat-form-field>
+          <div class="left-description">
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Project end date</mat-label>
+              <input matInput #endDate formControlName="endDate" type="date" placeholder="Ex. 09-01-2021">
+            </mat-form-field>
+          </div>
 
-          <mat-form-field class="full-width" appearance="fill">
-            <mat-label>Access Code</mat-label>
-            <input matInput #accessCode formControlName="accessCode" type="text" placeholder="Ex. 657Jy@0">
-          </mat-form-field>
+          <div class="left-description">
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Access Code</mat-label>
+              <input matInput #accessCode formControlName="accessCode" type="text" placeholder="Ex. 657Jy@0">
+            </mat-form-field>
+          </div>
         </div>
 
       </mat-card-content>

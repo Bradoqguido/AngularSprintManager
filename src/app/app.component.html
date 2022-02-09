@@ -1,9 +1,55 @@
-<app-account-type></app-account-type>
+<mat-drawer-container autosize>
+  <mat-drawer #drawer class="sidenav" mode="side">
+    <p>Add user icon and data here</p>
 
-<app-enter-project></app-enter-project>
+    <p>Add calls to ng-container to the buttons below</p>
+    <div>
+      <button type="button" mat-button>
+        <mat-icon class="mat-18">assignment</mat-icon>
+        Projects
+      </button>
+    </div>
 
-<app-project-view></app-project-view>
+    <div>
+      <button type="button" mat-button>
+        <mat-icon class="mat-18">list</mat-icon>
+        Sprints
+      </button>
+    </div>
 
-<app-sprint-view></app-sprint-view>
+    <div>
+      <button type="button" mat-button>
+        <mat-icon class="mat-18">task</mat-icon>
+        Tasks
+      </button>
+    </div>
 
-<app-task-view></app-task-view>
+  </mat-drawer>
+
+  <div class="sidenav-content">
+    <div>
+      <mat-toolbar>
+        <span>Sprint Manager</span>
+      </mat-toolbar>
+
+      <div style="margin: 16px;">
+        <button type="button" mat-button (click)="drawer.toggle()">
+          Toggle sidenav
+        </button>
+
+        <p>Add answers to ng-container to every module below</p>
+
+        <app-account-type></app-account-type>
+
+        <app-enter-project></app-enter-project>
+
+        <app-project-view></app-project-view>
+
+        <app-sprint-view></app-sprint-view>
+
+        <app-task-view></app-task-view>
+      </div>
+
+    </div>
+  </div>
+</mat-drawer-container>
